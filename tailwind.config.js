@@ -48,7 +48,10 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        blob: "blob 10s infinite ease-in-out",
+      },
     },
   },
   plugins: [],
-}
+};
