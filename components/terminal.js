@@ -53,10 +53,10 @@ export default function Terminal() {
       handleCommand()
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
-      navigateHistory(-1)
+      navigateHistory(1) // ArrowUp: previous command
     } else if (e.key === "ArrowDown") {
       e.preventDefault()
-      navigateHistory(1)
+      navigateHistory(-1) // ArrowDown: next command
     } else if (e.key === "Tab") {
       e.preventDefault()
       handleTabCompletion()
@@ -214,12 +214,11 @@ export default function Terminal() {
       return
     }
 
-    // Format output
+    // Format output: only show names, color blue for directories
     const output = dirContents
       .map((item) => {
         const color = item.type === "directory" ? "text-blue-400" : "text-white"
-        const permissions = item.permissions || "rw-r--r--"
-        return `<span class="${color}">${permissions} ${item.name}${item.type === "directory" ? "/" : ""}</span>`
+        return `<span class="${color}">${item.name}${item.type === "directory" ? "/" : ""}</span>`
       })
       .join("  ")
 
